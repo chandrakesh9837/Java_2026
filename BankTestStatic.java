@@ -3,7 +3,14 @@ import java.util.*;
 class BankAccount
 {
 	Scanner scan=new Scanner(System.in);
-
+	private static int BANK_BAL;
+	private static int c_no;
+	private int c_id;
+	static
+	{
+		BANK_BAL=100000;
+		c_no=100;
+	}
 	private int balance;
 	public BankAccount()
 	{
@@ -17,20 +24,29 @@ class BankAccount
 		}
 
 		balance=amo;
-		System.out.println("\nEnter amount succesfully: ");
+		BANK_BAL+=amo;
+		c_no++;
+		c_id=c_no;
+		System.out.println("\nYour account open succesfully: ");
+		System.out.println("\n Your C_number: "+c_id);
 
 	}
 	public void deposit()
 	{
+		System.out.println("\n Your C_number: "+c_id);
 		System.out.printf("Deposit Amount:	");
 		int amo;
 		amo=scan.nextInt();
 		balance+=amo;
+		BANK_BAL+=amo;
+
 		System.out.println("Amount deposit succesfully:");
+
 
 	}
 	public void Withrowal()
 	{
+		System.out.println("\n Your C_number: "+c_id);
 		int amo;
 		System.out.println("Enter Withrowal Amount:");
 		amo=scan.nextInt();
@@ -43,11 +59,20 @@ class BankAccount
 		else
 		{
 			System.out.println("You can not Withrowal " + amo +" you can Withrowal maximum amount "+ (balance-2000)+ ".");
+			BANK_BAL-=amo;
+
 		}
 	}
 	public void Show()
 	{
+		System.out.println("\n Your C_number: "+c_id);
 		System.out.println("your balance " + balance);
+	}
+
+	public static void ShowBANK_BAL()
+	{
+		System.out.println("\nTotal Bank balance " + BANK_BAL);
+
 	}
 
 }
@@ -71,6 +96,8 @@ class BankTestStatic
 				case 3: cust.Show(); break;
 			}
 		}while(ch!=0);
+
+
 	}
 
 
@@ -96,6 +123,8 @@ class BankTestStatic
 
 
 		}while(true);
+
+		BankAccount.ShowBANK_BAL();
 
 
 	}
